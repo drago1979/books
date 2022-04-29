@@ -14,8 +14,7 @@ class ParsingService
 
         $parser = ParserFactory::getParser($fileType);
 
-//        dd($parser->parse($file));
-       return $parser->parse($file);
+        return $parser->parse($file);
 
     }
 

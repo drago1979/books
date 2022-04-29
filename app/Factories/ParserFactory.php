@@ -5,6 +5,7 @@ namespace App\Factories;
 
 
 use App\Services\CsvParserService;
+use App\Services\XmlParserService;
 
 class ParserFactory
 {
@@ -21,7 +22,7 @@ class ParserFactory
                 echo 'application/vnd.ms-excel';
                 break;
             case 'text/xml':
-                echo 'text/xml';
+                return app(XmlParserService::class);
                 break;
             case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
                 echo 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';

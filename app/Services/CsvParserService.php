@@ -27,7 +27,6 @@ class CsvParserService
 
             fclose($csvContent);
         }
-//        dd($this->addNamesToFields($columnNames, $books));
        return $this->addNamesToFields($columnNames, $books);
     }
 
@@ -46,8 +45,6 @@ class CsvParserService
 
             $results[] = $result;
         }
-
-//        dd($results);
         return $results;
     }
 }
