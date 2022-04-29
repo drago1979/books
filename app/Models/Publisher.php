@@ -9,6 +9,8 @@ class Publisher extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     // Relationships
     public function books()
     {

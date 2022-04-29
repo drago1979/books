@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+| Default Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,5 +26,16 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+/*
+|--------------------------------------------------------------------------
+| Custom Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/files/create', [\App\Http\Controllers\FileController::class, 'create']);
+Route::post('/files', [\App\Http\Controllers\FileController::class, 'store'])->name('store_file');
+
+
 
 require __DIR__.'/auth.php';
