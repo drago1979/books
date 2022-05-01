@@ -14,6 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+| Default Routes
+|--------------------------------------------------------------------------
+*/
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/*
+|--------------------------------------------------------------------------
+| Custom Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/books', [\App\Http\Controllers\BookController::class, 'index']);
+Route::get('/books/{book}', [\App\Http\Controllers\BookController::class, 'show']);

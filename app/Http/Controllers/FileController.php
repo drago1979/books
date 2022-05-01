@@ -7,12 +7,9 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Publisher;
 use App\Services\ParsingService;
-use App\Traits\Existable;
 
 class FileController extends Controller
 {
-    use Existable;
-
     public function create()
     {
         return view('upload.form');
@@ -32,19 +29,7 @@ class FileController extends Controller
                 'name' => $book['Autor']
             ]);
 
-            if ($this->bookExists($book['Naziv Knjige'], $book['Godina Izdanja'], $publisher->id, $author->id)) {
-                continue;
-            }
-
-            $newBook = Book::create([
-                'name' => $book['Naziv Knjige'],
-                'date_published' => $book['Godina Izdanja']
-            ]);
-
-            $newBook->publisher()->associate($publisher);
-            $newBook->save();
-
-            $newBook->authors()->attach($author->id);
+            Book::store($book['Naziv Knjige'], $book['Godina Izdanja'], $publisher, $author);
         }
 
         return view('upload.form');

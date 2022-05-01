@@ -4,47 +4,35 @@
 namespace App\Services;
 
 
+use App\Traits\CreateArrayKeysFromColumnNames;
+
 class CsvParserService
 {
+    use CreateArrayKeysFromColumnNames;
+
     public function parse($file)
     {
         if (($csvContent = fopen($file, 'r')) !== FALSE) {
-            $row = 0;
+            $rowNumber = 0;
             $columnNames = [];
             $books = [];
 
-            while (($csvLine = fgetcsv($csvContent, 250, ",")) !== FALSE) {
+            while (($fileRow = fgetcsv($csvContent, 250, ",")) !== FALSE) {
 
-                if ($row === 0) {
-                    $columnNames = $csvLine;
-                    $row++;
+                dd($fileRow);
+
+                if ($rowNumber === 0) {
+                    $columnNames = $fileRow;
+                    $rowNumber++;
 
                     continue;
                 }
 
-                $books[] = $csvLine;
+                $books[] = $fileRow;
             }
 
             fclose($csvContent);
         }
-       return $this->addNamesToFields($columnNames, $books);
-    }
-
-    public function addNamesToFields($columnNames, $books)
-    {
-        $results = [];
-
-        foreach ($books as $book) {
-            $result = [];
-
-            foreach ($book as $index => $bookAttribute) {
-                $columnName = $columnNames[$index];
-
-                $result[$columnName] = $bookAttribute;
-            }
-
-            $results[] = $result;
-        }
-        return $results;
+       return $this->CreateArrayKeysFromColumnNames($columnNames, $books);
     }
 }
