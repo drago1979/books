@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Services\CsvParserService;
-use App\Services\XlsxParserService;
-use App\Services\XmlParserService;
+use App\Services\ParserCsvService;
+use App\Services\ParserXlsxService;
+use App\Services\ParserXmlService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,16 +16,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(CsvParserService::class, function ($app) {
-            return new CsvParserService();
+        $this->app->bind(ParserCsvService::class, function ($app) {
+            return new ParserCsvService();
         });
 
-        $this->app->bind(XmlParserService::class, function ($app) {
-            return new XmlParserService();
+        $this->app->bind(ParserXmlService::class, function ($app) {
+            return new ParserXmlService();
         });
 
-        $this->app->bind(XlsxParserService::class, function ($app) {
-            return new XlsxParserService();
+        $this->app->bind(ParserXlsxService::class, function ($app) {
+            return new ParserXlsxService();
         });
     }
 

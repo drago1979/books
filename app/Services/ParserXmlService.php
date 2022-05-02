@@ -4,8 +4,10 @@
 namespace App\Services;
 
 
-class XmlParserService
+class ParserXmlService
 {
+    private $books;
+
     public function parse($file)
     {
         libxml_use_internal_errors(TRUE);
@@ -20,19 +22,21 @@ class XmlParserService
             exit;
         }
 
-        $objJsonDocument = json_encode($objXmlDocument);
-        $arrOutput = json_decode($objJsonDocument, TRUE);
+        $this->books = json_decode(json_encode($objXmlDocument), TRUE)['row'];
 
-        $arrOutputIndexed = $arrOutput['row'];
+        $this->normalizeBooksAttributeNames();
 
-        foreach ($arrOutputIndexed as $index => &$item) {
+        return $this->books;
+    }
+
+    private function normalizeBooksAttributeNames()
+    {
+        foreach ($this->books as $index => &$item) {
             $item['Naziv Knjige'] = $item['Naziv_Knjige'];
             $item['Godina Izdanja'] = $item['Godina_Izdanja'];
 
             unset($item['Naziv_Knjige']);
             unset($item['Godina_Izdanja']);
         }
-
-        return $arrOutputIndexed;
     }
 }

@@ -4,9 +4,9 @@
 namespace App\Factories;
 
 
-use App\Services\CsvParserService;
-use App\Services\XlsxParserService;
-use App\Services\XmlParserService;
+use App\Services\ParserCsvService;
+use App\Services\ParserXlsxService;
+use App\Services\ParserXmlService;
 
 class ParserFactory
 {
@@ -16,17 +16,17 @@ class ParserFactory
         switch ($fileType) {
             case 'text/csv':
 //                echo 'text/csv';
-                return app(CsvParserService::class);
+                return app(ParserCsvService::class);
                 // Nepotrebno(?):
                 break;
             case 'application/vnd.ms-excel':
-                return app(XlsxParserService::class);
+                return app(ParserXlsxService::class);
                 break;
             case 'text/xml':
-                return app(XmlParserService::class);
+                return app(ParserXmlService::class);
                 break;
             case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-                return app(XlsxParserService::class);
+                return app(ParserXlsxService::class);
                 break;
             default:
                 echo 'Unknown File Type';
@@ -35,16 +35,16 @@ class ParserFactory
         switch ($fileType) {
             case 'text/csv':
 //                echo 'text/csv';
-                return app(CsvParserService::class);
+                return app(ParserCsvService::class);
                 // Nepotrebno(?):
                 break;
             case 'application/vnd.ms-excel':
             case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
 
-            return app(XlsxParserService::class);
+            return app(ParserXlsxService::class);
                 break;
             case 'text/xml':
-                return app(XmlParserService::class);
+                return app(ParserXmlService::class);
                 break;
             default:
                 echo 'Unknown File Type';
