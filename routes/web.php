@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Default Routes
+| App Default Routes
 |--------------------------------------------------------------------------
 */
 
@@ -29,12 +29,18 @@ Route::get('/dashboard', function () {
 
 /*
 |--------------------------------------------------------------------------
-| Custom Routes
+| Additional Routes
 |--------------------------------------------------------------------------
 */
 
-Route::get('/files/create', [\App\Http\Controllers\FileController::class, 'create']);
-Route::post('/files', [\App\Http\Controllers\FileController::class, 'store'])->name('store_file');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/files/create', [\App\Http\Controllers\FileController::class, 'create']);
+    Route::post('/files', [\App\Http\Controllers\FileController::class, 'store'])->name('store_file');
+});
+
+
+//Route::get('/files/create', [\App\Http\Controllers\FileController::class, 'create']);
+//Route::post('/files', [\App\Http\Controllers\FileController::class, 'store'])->name('store_file');
 
 
 

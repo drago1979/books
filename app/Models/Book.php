@@ -14,6 +14,7 @@ class Book extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $with = ['authors:id,name', 'publisher:id,name'];
 
     // Mutators
     protected function datePublished(): Attribute
