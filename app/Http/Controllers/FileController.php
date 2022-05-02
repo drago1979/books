@@ -6,7 +6,7 @@ use App\Http\Requests\FileStoreRequest;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Publisher;
-use App\Services\ParsingService;
+use App\Services\ParserService;
 
 class FileController extends Controller
 {
@@ -17,7 +17,7 @@ class FileController extends Controller
 
     public function store(FileStoreRequest $request)
     {
-        $books = ParsingService::parse($request->file('fileToUpload'));
+        $books = ParserService::parse($request->file('fileToUpload'));
 
         foreach ($books as $book) {
 

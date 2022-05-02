@@ -4,9 +4,9 @@
 namespace App\Services;
 
 
-use App\AbstractClasses\Parser;
+use App\AbstractClasses\ParserCsvAndParserSpreadSheet;
 
-class ParserCsvService extends Parser
+class ParserCsvService extends ParserCsvAndParserSpreadSheet
 {
     public function parse($file): array
     {
@@ -21,14 +21,12 @@ class ParserCsvService extends Parser
             fclose($this->fileRows);
         }
 
-        dd($this->createArrayKeysFromColumnNames());
-        return $this->createArrayKeysFromColumnNames();
+        $this->createArrayKeysFromColumnNames();
+        return $this->books;
     }
 
     protected function getColumnNames(): void
     {
-//        dd(fgetcsv($this->fileRows, 250, ","));
         $this->columnNames = fgetcsv($this->fileRows, 250, ",");
-//        dd($this->columnNames);
     }
 }

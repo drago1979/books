@@ -4,22 +4,24 @@
 namespace App\Services;
 
 
-use App\AbstractClasses\Parser;
+use App\AbstractClasses\ParserCsvAndParserSpreadSheet;
 
-class ParserXlsxService extends Parser
+class ParsersSpreadSheetService extends ParserCsvAndParserSpreadSheet
 {
+    protected $reader;
+
+    public function __construct($reader)
+    {
+        $this->reader = $reader;
+    }
+
     public function parse($file): array
     {
-        // Create a new Xls Reader
-//        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-
-
         // Tell the reader to only read the data. Ignore formatting etc.
-        $reader->setReadDataOnly(true);
+        $this->reader->setReadDataOnly(true);
 
         // Read the entire spreadsheet file.
-        $spreadsheet = $reader->load($file);
+        $spreadsheet = $this->reader->load($file);
 
         // Read first sheet.
         $sheet = $spreadsheet->getSheet($spreadsheet->getFirstSheetIndex());
@@ -31,8 +33,9 @@ class ParserXlsxService extends Parser
             $this->books[] = $fileRow;
         }
 
-        dd($this->createArrayKeysFromColumnNames());
-        return $this->createArrayKeysFromColumnNames();
+        $this->createArrayKeysFromColumnNames();
+
+        return $this->books;
     }
 
     protected function getColumnNames(): void

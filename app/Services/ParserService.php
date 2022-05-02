@@ -6,7 +6,7 @@ namespace App\Services;
 
 use App\Factories\ParserFactory;
 
-class ParsingService
+class ParserService
 {
     public static function parse($file)
     {
@@ -14,7 +14,6 @@ class ParsingService
 
         $parser = ParserFactory::getParser($fileType);
 
-//        dd($parser);
         return $parser->parse($file);
     }
 }
