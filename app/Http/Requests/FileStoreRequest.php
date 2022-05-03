@@ -7,17 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 class FileStoreRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        // !!!!!!
-        return true;
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -28,7 +17,6 @@ class FileStoreRequest extends FormRequest
             'fileToUpload' => [
                 'required',
                 'mimes:csv,xml,xls,xlsx'
-//                'file'
             ]
         ];
     }
@@ -37,7 +25,7 @@ class FileStoreRequest extends FormRequest
     {
         return [
             'fileToUpload.required' => 'File is required',
-            'fileToUpload.mimes' => 'Choose supported file type',
+            'fileToUpload.mimes' => 'Choose supported file type.',
         ];
     }
 

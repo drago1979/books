@@ -20,7 +20,6 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'email_verified_at' => '2021-05-11 20:30:47',
             'password'  => bcrypt('admin'),
-//            'remember_token' => 'eM4fv9jT6P',
         ]);
     }
 }

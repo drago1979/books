@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Default Routes
+| App Default Routes
 |--------------------------------------------------------------------------
 */
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -25,9 +25,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 /*
 |--------------------------------------------------------------------------
-| Custom Routes
+| Additional Routes
 |--------------------------------------------------------------------------
 */
 
-Route::get('/books', [\App\Http\Controllers\BookController::class, 'index']);
-Route::get('/books/{book}', [\App\Http\Controllers\BookController::class, 'show']);
+Route::post('auth/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
+
+Route::group([
+    'middleware' => 'auth:sanctum',
+    'controller' => \App\Http\Controllers\BookController::class
+    ], function () {
+    Route::get('/books', 'index');
+    Route::get('/books/{book}', 'show');
+});

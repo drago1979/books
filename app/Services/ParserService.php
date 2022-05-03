@@ -12,6 +12,8 @@ class ParserService
     {
         $fileType = $file->getClientMimeType();
 
+        dd($fileType);
+
         $parser = ParserFactory::getParser($fileType);
 
         return $parser->parse($file);

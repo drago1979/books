@@ -10,10 +10,18 @@ abstract class ParserCsvAndParserSpreadSheet
     protected array $columnNames = [];
     protected array $books = [];
 
+    /**
+     * @param $file
+     * @return array
+     */
     abstract public function parse($file): array;
 
     abstract protected function getColumnNames(): void;
 
+    /**
+     * Description: Takes column names and sets them as associative array keys.
+     *
+     */
     public function createArrayKeysFromColumnNames(): void
     {
         foreach ($this->books as &$book) {

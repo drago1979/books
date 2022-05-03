@@ -33,15 +33,11 @@ Route::get('/dashboard', function () {
 |--------------------------------------------------------------------------
 */
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/files/create', [\App\Http\Controllers\FileController::class, 'create']);
+require __DIR__.'/auth.php';
+
+Route::group([
+    ['middleware' => ['auth', 'can:file-upload']]
+], function () {
+    Route::get('/files/create', [\App\Http\Controllers\FileController::class, 'create'])->name('upload_file');
     Route::post('/files', [\App\Http\Controllers\FileController::class, 'store'])->name('store_file');
 });
-
-
-//Route::get('/files/create', [\App\Http\Controllers\FileController::class, 'create']);
-//Route::post('/files', [\App\Http\Controllers\FileController::class, 'store'])->name('store_file');
-
-
-
-require __DIR__.'/auth.php';

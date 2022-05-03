@@ -4,12 +4,18 @@
 namespace App\Factories;
 
 
+use App\Exceptions\InvalidFileTypeException;
 use App\Services\ParserCsvService;
 use App\Services\ParsersSpreadSheetService;
 use App\Services\ParserXmlService;
 
 class ParserFactory
 {
+    /**
+     * @param $fileType
+     * @return ParserCsvService|ParsersSpreadSheetService|ParserXmlService|\Illuminate\Contracts\Foundation\Application|mixed
+     * @throws InvalidFileTypeException
+     */
     public static function getParser($fileType)
     {
         switch ($fileType) {
@@ -26,7 +32,7 @@ class ParserFactory
                         'reader' => app(\PhpOffice\PhpSpreadsheet\Reader\Xlsx::class)
                     ]);
             default:
-                echo 'Unknown File Type';
+                throw new InvalidFileTypeException();
         }
     }
 }
