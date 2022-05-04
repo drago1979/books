@@ -90,7 +90,7 @@ https://drive.google.com/file/d/1PKvb4Hg9il8bRsfNarjAreTseBzvpp5M/view?usp=shari
 * Login (using existing credentials) in order to be issued with API token.
   - POST to URI: http://(app URI)/api/auth/login
   - In Postman set the BODY/RAW/JSON
-  - In body use the following JSON string: {"email": "admin@gmail.com","password": "admin1234"}
+  - In body use the following format for JSON string: {"email": "admin@gmail.com","password": "admin1234"}
   - In RESPONSE BODY you will recieve API token. Copy the token.
 * Access the existing endpoints.
   - Paste the token from previous step to Authorization/Type/BearerToken/Token field.
