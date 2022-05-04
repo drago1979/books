@@ -2,15 +2,27 @@
 
 ## About the app
 Tiny demo app.  
-API, RESTful, endpoints, csv -> DB, csv download <-DB.  
-- Suppliers (index, update, delete).  
-- Products (index, update, delete, filter by supplier, load CSV, download CSV w/ suppliers).  
+Web interface: 
+* login; 
+* create regular "member"; 
+* all users can access dashboard; 
+* "admin" can upload file containing books (CSV, XML, XLS, XLSX).
+
+API interface: all users can
+* login and retrieve API token (Sanctum); 
+* retrieve single resource or all resources with (or without) filtering.    
+
 
 
 ## Version requirements
 - PHP – 8.0.13
 - DB - 10.4.24-MariaDB
 - Laravel – 9.9.0
+
+## Tested for:
+  - Chrome version: 100.0.4896.127
+  - Mozilla Firefox version: 99.0.1
+  - Microsoft Edge version: 101.0.1210.32
 
 ## Installation
 
@@ -85,5 +97,9 @@ https://drive.google.com/file/d/1PKvb4Hg9il8bRsfNarjAreTseBzvpp5M/view?usp=shari
   - Endpoint 1: GET to URI: http://(app URI)/api/login/books/{book_id}
   - Endpoint 2: GET to URI: http://(app URI)/api/login/books. Here you can filter results:  
   a) By book title: http://(app URI)/api/books?name_like=some_strig, or by  
-  b) publishing year range: http://(app URI)/api/books?date_published_range=integer_value (Integer values are: 0 = less than 5 years; 1 = between 5 and 10 years; 3 = older than 10 years, or by  
+  b) publishing year range: http://(app URI)/api/books?date_published_range=integer_value  (Integer values are: 
+     
+     I. 0 = less than 5 years;  
+    II. 1 = between 5 and 10 years;  
+    III. 2 = older than 10 years, or by  
   c) both criteria.
