@@ -56,3 +56,18 @@ php artisan db:seed --class=UserSeeder
 * member:
   - email: member@gmail.com
   - pass: admin1234
+### Browser acces:
+* admin:
+  - Can access dashboard
+  - Can upload files (csv, xml, xls, xlsx)
+* member:
+  - can access dashboard
+* NOTE:
+  - Testing can be performed using these files:
+  ```
+https://github.com/drago1979/books.git
+
+```
+
+### API 
+
