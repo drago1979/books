@@ -39,7 +39,7 @@
 
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="text-center p-6 bg-white border-b border-gray-200">
-                <a href="{{ route('dashboard') }}">Or...You can GO BACK<br>where you were</a>
+                <a href="{{ route('dashboard') }}" class="hover:underline">Or...You can GO BACK<br>where you were</a>
             </div>
         </div>
 

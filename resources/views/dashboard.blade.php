@@ -21,7 +21,7 @@
 
             @can('file-upload')
                 <a href='{{ route('upload_file') }}'
-                   class="text-red-600 mt-6"
+                   class="text-red-600 hover:underline mt-6"
                 >
                     Click to import file with books....
                 </a>

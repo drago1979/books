@@ -33,6 +33,7 @@ Route::get('/dashboard', function () {
 |--------------------------------------------------------------------------
 */
 
+
 //-----------------------------------------------------
 // Laravel Breeze
 //-----------------------------------------------------
@@ -43,14 +44,12 @@ require __DIR__ . '/auth.php';
 // Resources
 //-----------------------------------------------------
 
+Route::get('/files/create', [\App\Http\Controllers\FileController::class, 'create'])
+    ->middleware('auth')
+    ->middleware('can:file-upload')
+    ->name('upload_file');
 
-// Accessible only by admin-level user
-Route::group([
-    'middleware' => 'auth',
-    'controller' => \App\Http\Controllers\FileController::class
-], function () {
-    Route::get('/files/create', 'create')->name('upload_file');
-    Route::post('/files', 'store')->name('store_file');
-});
-
-
+Route::post('/files', [\App\Http\Controllers\FileController::class, 'store'])
+    ->middleware('auth')
+    ->middleware('can:file-upload')
+    ->name('store_file');

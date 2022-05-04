@@ -51,4 +51,3 @@ class ParserFactory
         throw new InvalidFileTypeException();
     }
 }
-
