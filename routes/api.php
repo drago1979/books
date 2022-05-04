@@ -29,8 +29,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 |--------------------------------------------------------------------------
 */
 
+// Issuing API token
 Route::post('auth/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
 
+//-----------------------------------------------------
+// Resources
+//-----------------------------------------------------
+
+// FIle upload
 Route::group([
     'middleware' => 'auth:sanctum',
     'controller' => \App\Http\Controllers\BookController::class

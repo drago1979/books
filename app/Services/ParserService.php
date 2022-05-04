@@ -16,8 +16,9 @@ class ParserService
     public static function parse($file)
     {
         $fileType = $file->getClientMimeType();
+        $fileExtension = $file->getClientOriginalExtension();
 
-        $parser = ParserFactory::getParser($fileType);
+        $parser = ParserFactory::getParser($fileExtension, $fileType);
 
         return $parser->parse($file);
     }

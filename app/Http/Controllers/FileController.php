@@ -25,6 +25,7 @@ class FileController extends Controller
      */
     public function store(FileStoreRequest $request)
     {
+
         try {
             $books = ParserService::parse($request->file('fileToUpload'));
         } catch (InvalidFileTypeException $e) {
