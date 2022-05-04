@@ -3,7 +3,6 @@
 
 namespace App\AbstractClasses;
 
-
 abstract class ParserCsvAndParserSpreadSheet
 {
     protected $fileRows;

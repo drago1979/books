@@ -12,7 +12,6 @@ class Publisher extends Model
     protected $guarded = [];
 
     // Relationships
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * Returning JSON format error if Model-Not-Found.
+     * Returning JSON-format-error if ModelNotFoundException thrown during API request.
      *
      * @param \Illuminate\Http\Request $request
      * @param ModelNotFoundException|Throwable $exception

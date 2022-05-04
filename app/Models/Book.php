@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Dotenv\Dotenv;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,7 +16,6 @@ class Book extends Model
     protected $with = ['authors:id,name', 'publisher:id,name'];
 
     // Mutators
-
     /**
      * @return Attribute
      */
@@ -29,7 +27,6 @@ class Book extends Model
     }
 
     // Relationships
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -47,7 +44,6 @@ class Book extends Model
     }
 
     // Filters
-
     /**
      * @param Builder $query
      * @param string $search
@@ -93,7 +89,6 @@ class Book extends Model
     }
 
     // Other methods
-
     /**
      * @param $title
      * @param $datePublished
@@ -123,6 +118,5 @@ class Book extends Model
         $newBook->save();
 
         $newBook->authors()->attach($author->id);
-
     }
 }
