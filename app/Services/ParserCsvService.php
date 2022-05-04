@@ -8,6 +8,10 @@ use App\AbstractClasses\ParserCsvAndParserSpreadSheet;
 
 class ParserCsvService extends ParserCsvAndParserSpreadSheet
 {
+    /**
+     * @param $file
+     * @return array
+     */
     public function parse($file): array
     {
         if (($this->fileRows = fopen($file, 'r')) !== FALSE) {

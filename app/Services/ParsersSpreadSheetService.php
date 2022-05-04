@@ -10,11 +10,19 @@ class ParsersSpreadSheetService extends ParserCsvAndParserSpreadSheet
 {
     protected $reader;
 
+    /**
+     * ParsersSpreadSheetService constructor.
+     * @param $reader
+     */
     public function __construct($reader)
     {
         $this->reader = $reader;
     }
 
+    /**
+     * @param $file
+     * @return array
+     */
     public function parse($file): array
     {
         // Tell the reader to only read the data. Ignore formatting etc.

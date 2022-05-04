@@ -26,6 +26,9 @@ class AuthLoginRequest extends FormRequest
         ];
     }
 
+    /**
+     * @param Validator $validator
+     */
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([

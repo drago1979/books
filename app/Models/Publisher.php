@@ -12,6 +12,10 @@ class Publisher extends Model
     protected $guarded = [];
 
     // Relationships
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function books()
     {
         return $this->hasMany(Publisher::class);

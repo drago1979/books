@@ -8,6 +8,10 @@ class ParserXmlService
 {
     private $books;
 
+    /**
+     * @param $file
+     * @return mixed
+     */
     public function parse($file)
     {
         libxml_use_internal_errors(TRUE);

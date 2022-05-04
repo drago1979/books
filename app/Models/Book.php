@@ -17,6 +17,10 @@ class Book extends Model
     protected $with = ['authors:id,name', 'publisher:id,name'];
 
     // Mutators
+
+    /**
+     * @return Attribute
+     */
     protected function datePublished(): Attribute
     {
         return Attribute::make(
@@ -25,44 +29,50 @@ class Book extends Model
     }
 
     // Relationships
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function authors()
     {
         return $this->belongsToMany(Author::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function publisher()
     {
         return $this->belongsTo(Publisher::class);
     }
 
     // Filters
+
+    /**
+     * @param Builder $query
+     * @param string $search
+     * @return Builder|void
+     */
     public function scopeSearch(Builder $query, $search = '')
     {
+        if (empty($search)) {
+            return;
+        }
         return $query->where('books.name', 'like', "%$search%");
 
-//        $columns = ["customers.id", "customers.first_name", "customers.last_name", "customers.email", "customers.phone"];
-//
-//        // If the search is empty, return everything
-//        if (empty(trim($search))) {
-//            return $query;
-//        } // If the search contains something, we perform the fuzzy search
-//        else {
-//            $fuzzySearch = "%$search%";
-//            $query->where(function (Builder $query2) use ($columns, $fuzzySearch) {
-//                foreach ($columns as $key => $column) {
-//                    if ($key == 0) {
-//                        $query2->where($column, 'like', $fuzzySearch);
-//                    } else {
-//                        $query2->orWhere($column, 'like', $fuzzySearch);
-//                    }
-//                }
-//            });
-//            return $query;
-//        }
     }
 
+    /**
+     * @param Builder $query
+     * @param string $publishingTimeRange
+     * @return Builder|void
+     */
     public function scopePublishingTimeRange(Builder $query, $publishingTimeRange = '')
     {
+        if (empty($publishingTimeRange)) {
+            return;
+        }
+
         if ($publishingTimeRange == 0) {
             $rangeLimit = '5';
             $operator = '>';
@@ -83,6 +93,13 @@ class Book extends Model
     }
 
     // Other methods
+
+    /**
+     * @param $title
+     * @param $datePublished
+     * @param $publisher
+     * @param $author
+     */
     public static function store($title, $datePublished, $publisher, $author)
     {
         $bookExists = static::query()

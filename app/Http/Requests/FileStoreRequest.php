@@ -11,7 +11,7 @@ class FileStoreRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'fileToUpload' => [
@@ -21,7 +21,7 @@ class FileStoreRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'fileToUpload.required' => 'File is required',

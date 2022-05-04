@@ -8,11 +8,14 @@ use App\Factories\ParserFactory;
 
 class ParserService
 {
+    /**
+     * @param $file
+     * @return array|mixed
+     * @throws \App\Exceptions\InvalidFileTypeException
+     */
     public static function parse($file)
     {
         $fileType = $file->getClientMimeType();
-
-        dd($fileType);
 
         $parser = ParserFactory::getParser($fileType);
 

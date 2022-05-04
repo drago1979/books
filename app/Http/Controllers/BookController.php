@@ -33,7 +33,6 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        // uzmi token i proveri ga
         $date = Carbon::now()->subYears(5)->toDateString();
 
         return new BookResource($book);

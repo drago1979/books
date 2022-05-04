@@ -19,7 +19,15 @@ class UserSeeder extends Seeder
             'name' => 'Evil Twin',
             'email' => 'admin@gmail.com',
             'email_verified_at' => '2021-05-11 20:30:47',
-            'password'  => bcrypt('admin'),
+            'password'  => bcrypt('admin1234'),
+        ]);
+
+        User::create([
+            'is_admin' => 0,
+            'name' => 'Evil Twins Twin',
+            'email' => 'member@gmail.com',
+            'email_verified_at' => '2021-05-11 20:30:47',
+            'password'  => bcrypt('member1234'),
         ]);
     }
 }
